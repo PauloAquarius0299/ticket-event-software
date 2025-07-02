@@ -1,4 +1,4 @@
-package com.paulotech.ticket_api.domain;
+package com.paulotech.ticket_api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,6 +31,9 @@ public class TicketType {
     @Column(name = "preço", nullable = false)
     private Double preço;
 
+    @Column(name = "descrinção")
+    private String descrinção;
+
     @Column(name = "total_disponivel")
     private Integer totalDisponivel;
 
@@ -53,11 +56,11 @@ public class TicketType {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         TicketType that = (TicketType) o;
-        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(preço, that.preço) && Objects.equals(totalDisponivel, that.totalDisponivel) && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(preço, that.preço) && Objects.equals(descrinção, that.descrinção) && Objects.equals(totalDisponivel, that.totalDisponivel) && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, preço, totalDisponivel, createdAt, updatedAt);
+        return Objects.hash(id, nome, preço, descrinção, totalDisponivel, createdAt, updatedAt);
     }
 }

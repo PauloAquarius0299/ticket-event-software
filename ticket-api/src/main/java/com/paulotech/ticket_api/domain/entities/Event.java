@@ -1,4 +1,4 @@
-package com.paulotech.ticket_api.domain;
+package com.paulotech.ticket_api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

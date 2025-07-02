@@ -1,4 +1,4 @@
-package com.paulotech.ticket_api.domain;
+package com.paulotech.ticket_api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,13 +10,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ingressos_validação")
+@Table(name = "qr_codes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TicketValidation {
+public class QrCode {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -25,11 +25,10 @@ public class TicketValidation {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TicketValidationStatusEnum status;
+    private QrCodeStatusEnum status;
 
-    @Column(name = "validação_metodo", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TicketValidationMethod validaçãoMetodo;
+    @Column(name = "valor", nullable = false)
+    private String valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ingressos_id")
@@ -46,12 +45,12 @@ public class TicketValidation {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        TicketValidation that = (TicketValidation) o;
-        return Objects.equals(id, that.id) && status == that.status && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
+        QrCode qrCode = (QrCode) o;
+        return Objects.equals(id, qrCode.id) && status == qrCode.status && Objects.equals(valor, qrCode.valor) && Objects.equals(createdAt, qrCode.createdAt) && Objects.equals(updatedAt, qrCode.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, createdAt, updatedAt);
+        return Objects.hash(id, status, valor, createdAt, updatedAt);
     }
 }
