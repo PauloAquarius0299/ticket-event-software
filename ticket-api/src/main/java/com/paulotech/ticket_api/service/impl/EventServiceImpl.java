@@ -5,6 +5,7 @@ import com.paulotech.ticket_api.domain.entities.Event;
 import com.paulotech.ticket_api.domain.entities.TicketType;
 import com.paulotech.ticket_api.domain.entities.User;
 import com.paulotech.ticket_api.exceptions.UserNotFoundException;
+import com.paulotech.ticket_api.repository.EventRepository;
 import com.paulotech.ticket_api.repository.UserRepository;
 import com.paulotech.ticket_api.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class EventServiceImpl implements EventService {
 
     private final UserRepository userRepository;
+    private final EventRepository eventRepository;
 
     @Override
     public Event createEvent(UUID organizadorId, CreateEventRequest event) {
@@ -45,6 +47,6 @@ public class EventServiceImpl implements EventService {
         eventToCreate.setStatus(event.getStatus());
         eventToCreate.setOrganizador(organizador);
         eventToCreate.setIngressosTipo(ticketTypesToCreate);
-        return null;
+        return eventRepository.save(eventToCreate);
     }
 }
